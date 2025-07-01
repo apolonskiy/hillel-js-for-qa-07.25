@@ -23,3 +23,46 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+import { LandingPage } from "./poms";
+
+Cypress.Commands.overwrite('visit', (originalFn, url, ...args) => {
+  originalFn(url, {
+    auth: {
+      username: 'guest',
+      password: 'welcome2qauto'
+    },
+    ...args
+  })
+})
+
+// parent approach 1 - simple commands
+Cypress.Commands.add('login', {prevSubject: false} ,(username = 'hillel-1@aaa.com', password = 'testHillel1!') => {
+  cy.visit('')
+  cy.contains('button', 'Sign In').click();
+  cy.get('[id="signinEmail"]').type(username);
+  cy.get('[id="signinPassword"]').type(password);
+  cy.contains('[class="modal-content"] button', 'Login').click();
+});
+
+// approach 2 - POM and custom command
+Cypress.Commands.add('loginClass', {prevSubject: false} ,(username = 'hillel-1@aaa.com', password = 'testHillel1!') => {
+  cy.visit('')
+  const landingPage = new LandingPage();
+  landingPage.executeLogin(username, password);
+});
+
+// child
+Cypress.Commands.add(
+  'console',
+  {
+    prevSubject: true, // в даній опції вказано, що попередній об'єкт винен існувати
+  },
+  (subject, method) => {
+    method = method || 'log'
+    // логування об'єкту у консоль
+    console[method]('The subject is', subject)
+    // повернення отриманого об'єкту
+    return subject
+  }
+)

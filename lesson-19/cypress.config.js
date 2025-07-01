@@ -6,11 +6,11 @@ export default defineConfig({
     openMode: 0
   },
   video: true,
-  viewportHeight: 1080,
-  viewportWidth: 1920,
+  viewportHeight: 720,
+  viewportWidth: 1080,
   e2e: {
     specPattern: 'cypress/e2e/**/*.test.{js,jsx,ts,tsx}',
-    baseUrl: 'https://example.cypress.io',
+    baseUrl: 'https://qauto.forstudy.space',
     setupNodeEvents(on, config) {
       on('task', {
         log(message) {

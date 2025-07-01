@@ -125,6 +125,8 @@ describe('Selectors tests - slider', {testIsolation: false}, () => {
   })
   
   it('displays two todo items by default', () => {
+    console.log(process.env.ENV_VAR);
+    cy.log()
     cy.get('[for="tried-test-cafe"]').click();
     const index = 1;
     cy.get('[id="slider"] span')

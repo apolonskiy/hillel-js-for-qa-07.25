@@ -5,24 +5,21 @@ import pluginCypress from 'eslint-plugin-cypress/flat'
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  {files: ['**/**.mjs', '**/**.js']},
-  {ignores: ['html*']},
-  {languageOptions: 
+  {  
+    files: ['**/**.mjs', '**/**.js'],
+    ignores: ['html*'],
+    languageOptions: 
     { 
       globals: globals.node,
       ecmaVersion: 'latest',
       sourceType: 'module'
-    }
-  },
-  pluginJs.configs.recommended,
-  pluginCypress.configs.recommended,
-  {
+    },
+    ...pluginJs.configs.recommended,
+    ...pluginCypress.configs.recommended,
     plugins: {
       '@stylistic/js': stylisticJs,
       'cypress': pluginCypress
     },
-  },
-  {
     rules: {
       "no-unused-vars": 0,
       "@stylistic/js/indent": ["error", 2, { "SwitchCase": 2 }],

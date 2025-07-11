@@ -1,0 +1,19 @@
+{
+  "name": "playwright-awa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "playwright:test:headless": "playwright test",
+    "playwright:test:headed": "playwright test --headed",
+    "playwright:test:headed:chrome": "playwright test --headed --project=chrome",
+    "playwright:test:headed:firefox": "playwright test --headed --project=firefox",
+    "playwright:ui": "playwright test --ui"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^24.0.13"
+  }
+}

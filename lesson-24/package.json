@@ -1,0 +1,25 @@
+{
+  "name": "playwright-awa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "playwright:test:headless": "playwright test",
+    "playwright:test:headed": "playwright test --headed",
+    "playwright:test:headed:chrome": "playwright test --headed --project=chrome",
+    "playwright:test:headed:firefox": "playwright test --headed --project=firefox",
+    "playwright:ui": "playwright test --ui",
+    "lint": "eslint --ext .js,.mjs,.cjs",
+    "lint:fix": "npm run lint -- --fix" 
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@stylistic/eslint-plugin-js": "^4.4.1",
+    "@types/node": "^24.0.13",
+    "eslint": "^9.31.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-playwright": "^2.2.0"
+  }
+}

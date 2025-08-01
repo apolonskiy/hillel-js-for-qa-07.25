@@ -8,7 +8,6 @@ on:
 jobs:
   tests-pw-default-image: 
     name: 'PW e2e tests on default image'
-    needs: tests-pw-custom-image
     runs-on: ubuntu-latest
     container:
      image: mcr.microsoft.com/playwright:v1.54.0

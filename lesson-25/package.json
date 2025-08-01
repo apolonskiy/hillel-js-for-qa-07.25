@@ -1,0 +1,40 @@
+{
+  "name": "playwright-awa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "pw:test:headless": "playwright test",
+    "pw:test:headed": "playwright test --headed",
+    "pw:test:headed:chrome": "playwright test --headed --project=chrome",
+    "pw:test:headed:firefox": "playwright test --headed --project=firefox",
+    "pw:test:headed:chrome:poms": "npm run pw:test:headed:chrome tests/pom-based-tests/settings.spec.js",
+    "pw:test:headed:chrome:poms-and-snapshots": "npm run pw:test:headed:chrome tests/pom-based-tests tests/initial-tests/selectors.spec.js",
+    "pw:test:headed:chrome:poms-partial-name": "npm run pw:test:headed:chrome settings",
+    "pw:test:headed:chrome:poms-specific-codeline": "npm run pw:test:headed:chrome settings:80",
+    "pw:test:headed:chrome:poms-partial-test-name": "npm run pw:test:headed:chrome -- -g 'ABCDDDFDF'",
+    "pw:test:headed:chrome:poms-grep-settings": "npm run pw:test:headed:chrome -- --grep @settings",
+    "pw:test:headed:chrome:poms-grep-inverted-settings": "npm run pw:test:headed:chrome:poms -- -- --grep-invert @settings",
+    "pw:test:headed:chrome:poms-grep-default-and-smoke": "cross-env ENV_NAME=qauto2 npm run pw:test:headed:chrome:poms -- -- --grep '(?=.*@default)(?=.*@smoke)'",
+    "pw:test:headed:chrome:poms-grep-smoke-or-settings": "npm run pw:test:headed:chrome:poms -- -- --grep '@smoke|@settings'",
+    "pw:test:headed:copy-config-qauto2": "cp configs/.env.qauto2 .env && npm run pw:test:headed:chrome:poms-grep-default-and-smoke",
+    "pw:test:headed:custom-project": "cp configs/.env.qauto2 .env && playwright test --headed --project=chrome-qauto2 --grep '(?=.*@default)(?=.*@smoke)'",
+    "playwright:ui": "playwright test --ui",
+    "lint": "eslint --ext .js,.mjs,.cjs",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@stylistic/eslint-plugin-js": "^4.4.1",
+    "@types/node": "^24.0.13",
+    "dotenv": "^17.2.1",
+    "eslint": "^9.31.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-playwright": "^2.2.0"
+  },
+  "dependencies": {
+    "cross-env": "^10.0.0"
+  }
+}

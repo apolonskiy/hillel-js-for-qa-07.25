@@ -44,7 +44,7 @@ export default defineConfig({
   //   ],
   // ],
   // reporter:[['line'], ['html'], ['allure-playwright']],
-  reporter: [ ['html'], ['junit', { outputFile: 'results.xml' }]],
+  reporter: [ ['github'], ['html'], ['junit', { outputFile: 'results.xml' }]],
   timeout: 120_000,
   expect: { 
     timeout: 5_000,

@@ -44,7 +44,7 @@ export default defineConfig({
   //   ],
   // ],
   // reporter:[['line'], ['html'], ['allure-playwright']],
-  reporter: [['github'], ['html'], ['junit', { outputFile: 'results.xml' }]],
+  reporter: [ ['github'], ['html'], ['junit', { outputFile: 'results.xml' }]],
   timeout: 120_000,
   expect: { 
     timeout: 5_000,
@@ -62,7 +62,7 @@ export default defineConfig({
     baseURL: process.env.BASE_URL || 'https://qauto.forstudy.space',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    headless: false,
+    headless: true,
     viewport: { width: 1920, height: 1080 },
     video: 'on', //'on-first-retry',
     trace: 'on', //'on-first-retry',

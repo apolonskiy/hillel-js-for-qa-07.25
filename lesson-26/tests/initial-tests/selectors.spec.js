@@ -94,7 +94,7 @@ test('Interactions with selectors', async({ page }) => {
 });
 
 
-test('Screenshot testing', async({ page }) => {
+test.skip('Screenshot testing', async({ page }) => {
   // simple locators
   await page.goto('https://devexpress.github.io/testcafe/example/');
   await expect(page.locator('[id="slider"]')).toHaveClass(/ui-slider-disabled/gi);

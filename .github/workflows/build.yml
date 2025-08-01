@@ -7,6 +7,7 @@ on:
     types: [opened, synchronize, reopened]
 jobs:
   tests-pw-default-image: 
+    if: github.event_name == 'pull_request'
     name: 'PW e2e tests on default image'
     runs-on: ubuntu-latest
     container:

@@ -6,7 +6,7 @@
     "pw:test:headless": "playwright test",
     "pw:test:headed": "playwright test --headed",
     "pw:test:headed:chrome": "playwright test --headed --project=chrome",
-    "pw:test:chromimum": "playwright test  --project=chromium",
+    "pw:test:chromium": "playwright test  --project=chromium",
     "pw:test:headed:firefox": "playwright test --headed --project=firefox",
     "pw:test:headed:chrome:poms": "npm run pw:test:headed:chrome tests/pom-based-tests/settings.spec.js",
     "pw:test:headed:chrome:poms-and-snapshots": "npm run pw:test:headed:chrome tests/pom-based-tests tests/initial-tests/selectors.spec.js",

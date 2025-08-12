@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "esnext",
+    "lib": ["esnext", "DOM"],
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "declaration": true,
+    "noEmitOnError": true
+  },
+  "exclude": [
+    "dist",
+  ]
+}

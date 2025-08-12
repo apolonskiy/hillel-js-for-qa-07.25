@@ -1,0 +1,32 @@
+{
+  "name": "lesson-29-ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "acorn": "^8.15.0",
+    "acorn-walk": "^8.3.4",
+    "arg": "^4.1.3",
+    "create-require": "^1.1.1",
+    "diff": "^4.0.2",
+    "esbuild": "^0.25.8",
+    "get-tsconfig": "^4.10.1",
+    "make-error": "^1.3.6",
+    "resolve-pkg-maps": "^1.0.0",
+    "typescript": "^5.9.2",
+    "v8-compile-cache-lib": "^3.0.1",
+    "yn": "^3.1.1"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.4"
+  },
+  "scripts": {
+    "build": "tsc",
+    "run:node": "npm run build && node dist/index.js",
+    "run:ts-node": "ts-node index.ts",
+    "run:tsx": "tsx index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

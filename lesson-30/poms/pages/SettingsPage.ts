@@ -1,6 +1,5 @@
 import { BrowserContext, expect, Page } from '@playwright/test';
 import { BasePage } from './BasePage';
-import exp from 'constants';
 
 export class SettingsPage extends BasePage {
   constructor(page: Page, context: BrowserContext){

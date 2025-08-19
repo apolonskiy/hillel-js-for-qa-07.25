@@ -30,7 +30,7 @@
     "playwright:ui": "playwright test --ui",
     "pw:test:ci:chromium:all-non-setup": "npm run pw:test:chromium -- --grep-invert @setup",
     "pw:test:ci:chromium:setup": "npm run pw:test:headless:chromium-setup -- --grep @setup",
-    "lint": "eslint --ext .js,.mjs,.cjs",
+    "lint": "eslint --ext .js,.mjs,.cjs,.ts,.mts",
     "lint:fix": "npm run lint -- --fix",
     "build": "tsc"
   },

@@ -7,12 +7,19 @@ import playwright from 'eslint-plugin-playwright';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default defineConfig([
-  globalIgnores(['html*', 'playwright-report', 'test-results', 'node_modules', 'allure-report']),
+  // Ignore folders
+  globalIgnores([
+    'html*',
+    'playwright-report',
+    'test-results',
+    'node_modules',
+    'allure-report',
+  ]),
+  pluginJs.configs.recommended,
+  playwright.configs['flat/recommended'],
+  ...tseslint.configs.recommended,
   {
-    ...pluginJs.configs.recommended,
-    ...playwright.configs['flat/recommended'],
-    // ...tseslint.configs.recommended,
-    files: ['**/*.ts', '**/*.mjs'],
+    files: ['**/*.ts', '**/*.js', '**/*.mjs'],
     languageOptions: {
       globals: globals.node,
       ecmaVersion: 'latest',
@@ -34,7 +41,9 @@ export default defineConfig([
       'no-unused-vars': 0,
       '@stylistic/js/indent': ['error', 2, { 'SwitchCase': 2 }],
       '@stylistic/js/space-in-parens': ['error', 'never'],
-      'no-undef': 'warn'
+      'no-undef': 'warn',
+      '@typescript-eslint/ban-ts-comment': 'off',
+      '@typescript-eslint/no-explicit-any': 'off'
     },
   },
 ]);

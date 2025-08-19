@@ -9,6 +9,7 @@
     "cypress:run:prod:parallel": "cypress-parallel -s cypress:run:prod -t 2 -d cypress/e2e/test -a '\"--browser=chrome --headed\"'",
     "cypress:run:headed": "cypress run --headed --browser=chrome",
     "cypress:run:headless:firefox": "cypress run --headless --browser=firefox",
+    "cypress:run:headless:electron": "cypress run --headless --browser=electron",
     "cypress:run:env": "cypress run --browser=chrome --env BASE_URL=https://qauto2.forstudy.space",
     "cypress:run:headed:env": "cross-env BASE_URL=https://qauto2.forstudy.space cypress run --headed --browser=chrome",
     "merge-reports": "mochawesome-merge ./mochawesome-report/*.json -o ./mochawesome-report/result.json && npx marge mochawesome-report/result.json",

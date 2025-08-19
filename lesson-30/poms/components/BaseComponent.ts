@@ -1,4 +1,4 @@
-import { BrowserContext, Page } from "@playwright/test";
+import { BrowserContext, Page } from '@playwright/test';
 
 export class BaseComponent {
   protected page: Page;

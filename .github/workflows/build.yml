@@ -140,5 +140,5 @@ jobs:
           name: cypress-report-default
           path: |
                 lesson-30-cy/mochawesome-report/
-                lesson-30-cy/videos/
+                lesson-30-cy/cypress/videos/
           retention-days: 5

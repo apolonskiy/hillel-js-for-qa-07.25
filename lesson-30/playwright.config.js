@@ -36,7 +36,7 @@ export default defineConfig({
     ['list'],
     ['github'],
     ['junit', { outputFile: 'results.xml' }],
-    ['html', { open: !!process.env.CI ? 'never' : 'on-failure' }],
+    ['html', { open: process.env.CI ? 'never' : 'on-failure' }],
     [
     // new way
       '@testomatio/reporter/playwright',
@@ -66,8 +66,8 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     headless: true,
     // viewport: { width: 1920, height: 1080 },
-    video: !!process.env.CI ? 'on-first-retry': 'on', //'on-first-retry',
-    trace: !!process.env.CI ? 'on-first-retry': 'on', //'on-first-retry',
+    video: process.env.CI ? 'on-first-retry': 'on', //'on-first-retry',
+    trace: process.env.CI ? 'on-first-retry': 'on', //'on-first-retry',
     httpCredentials: {
       username: 'guest',
       password: 'welcome2qauto',
@@ -124,7 +124,7 @@ export default defineConfig({
 
     {
       name: 'chromium-setup',
-      testMatch: /.*\-dependencies/,
+      testMatch: /.*-dependencies/,
       use: { ...devices['Desktop Chrome'], 
         storageState: '.auth/user.json',
         // viewport: { width: 1920, height: 1080 },

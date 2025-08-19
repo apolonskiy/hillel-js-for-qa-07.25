@@ -9,7 +9,7 @@ test.describe('POM-based tests of Settings page', () => {
   let navBar: NavBar;
   let settingsPage: SettingsPage;
 
-  test.beforeEach(async({ page, context, baseURL }) => {
+  test.beforeEach(async({ page, context }) => {
     landingPage = new LandingPage(page, context);
     header = new Header(page, context);
     navBar = new NavBar(page, context);

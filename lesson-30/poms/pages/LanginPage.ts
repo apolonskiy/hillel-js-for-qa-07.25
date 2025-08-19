@@ -1,6 +1,6 @@
 import { LoginModal } from '../modals';
 import { BasePage } from './BasePage';
-import { BrowserContext, Page } from "@playwright/test";
+import { BrowserContext, Page } from '@playwright/test';
 
 
 export class LandingPage extends BasePage {

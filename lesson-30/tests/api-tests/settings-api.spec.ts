@@ -73,7 +73,7 @@ test.describe('API related tests of Settings page', () => {
   });
 
 
-  test.afterEach(async({ page }) => {
+  test.afterEach(async({ }) => {
     await settinsApi.putSettings({ currency: 'usd' });
     await settinsApi.putSettings({ distanceUnits: 'km' });
   });
@@ -121,7 +121,7 @@ test.describe('API related tests of Settings page', () => {
       expect(await responseCb.json()).toEqual(expect.objectContaining({
         data: { distanceUnits: 'ml' }
       }));
-      await page.waitForTimeout(2000)
+      await page.waitForTimeout(2000);
 
       /// ------------
       await page.reload();

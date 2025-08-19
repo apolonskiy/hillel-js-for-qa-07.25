@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         working-directory: ./lesson-30
         run: npm ci
-      - name: Run lint
+      - name: Run typecheck
         working-directory: ./lesson-30
         run: npm run build
   tests-pw-default-image: 
@@ -38,31 +38,67 @@ jobs:
     needs: typecheck-pw-lesson-30
     runs-on: ubuntu-latest
     container:
-     image: mcr.microsoft.com/playwright:v1.54.0
+     image: mcr.microsoft.com/playwright:v1.54.2-noble
     permissions:
       contents: read
       checks: write
     steps:
       - uses: actions/checkout@v5
       - name: Install dependencies
-        working-directory: ./lesson-26
+        working-directory: ./lesson-30
         run: npm ci
       - name: Run e2e tests
-        working-directory: ./lesson-26
+        working-directory: ./lesson-30
         run: |
-              npm run pw:test:chromium
+              npm run pw:test:ci:chromium:all-non-setup
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
           name: playwright-report-default
           path: |
-                lesson-26/playwright-report/
-                lesson-26/test-results/
-                lesson-26/results.xml
+                lesson-30/playwright-report/
+                lesson-30/test-results/
+                lesson-30/results.xml
           retention-days: 30
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v5
         if: success() || failure() # always run even if the previous step fails
         with:
-          report_paths: 'lesson-26/results.xml'
+          report_paths: 'lesson-30/results.xml'
+          token: ${{ secrets.GITHUB_TOKEN }}
+  tests-pw-custom-image: 
+    name: 'PW e2e tests on custom image'
+    needs: tests-pw-default-image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with: 
+          node-version: lts/*
+      - name: Install playwright
+        run: npx -y playwright@1.54.2 install --with-deps
+      - name: Install dependencies
+        working-directory: ./lesson-30
+        run: npm ci
+      - name: Run e2e tests
+        working-directory: ./lesson-30
+        run: |
+              npm run pw:test:ci:chromium:setup
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report-custom
+          path: |
+                lesson-30/playwright-report/
+                lesson-30/test-results/
+                lesson-30/results.xml
+          retention-days: 30
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v5
+        if: success() || failure() # always run even if the previous step fails
+        with:
+          report_paths: 'lesson-30/results.xml'
           token: ${{ secrets.GITHUB_TOKEN }}

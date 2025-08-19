@@ -70,7 +70,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
   tests-pw-custom-image: 
     name: 'PW e2e tests on custom image'
-    needs: tests-pw-default-image
+    needs: typecheck-pw-lesson-30
     runs-on: ubuntu-latest
     permissions:
       contents: read

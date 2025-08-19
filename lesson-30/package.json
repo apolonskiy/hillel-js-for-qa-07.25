@@ -28,6 +28,8 @@
     "pw:test:headed:chrome-api": "playwright test tests/api-tests/** --headed --project=chrome",
     "pw:test:headless:chrome-api": "playwright test tests/api-tests/** --project=chromium",
     "playwright:ui": "playwright test --ui",
+    "pw:test:ci:chromium:all-non-setup": "npm run pw:test:chromium -- --grep-invert @setup",
+    "pw:test:ci:chromium:setup": "npm run pw:test:headless:chromium-setup -- --grep @setup",
     "lint": "eslint --ext .js,.mjs,.cjs",
     "lint:fix": "npm run lint -- --fix"
   },

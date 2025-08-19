@@ -84,7 +84,7 @@ test.describe('API related tests of Settings page', () => {
     await settinsApi.putSettings({ distanceUnits: 'km' });
   });
 
-  test('Settings with API Interception', { tag: ['@default', '@smoke'] },async({ page }) => {
+  test('Settings with API Interception', { tag: ['@api'] },async({ page }) => {
     await test.step('Initial components check', async() => {
       await header.isHeaderVisible();
       await header.selectTab('expenses');
@@ -127,6 +127,7 @@ test.describe('API related tests of Settings page', () => {
       expect(await responseCb.json()).toEqual(expect.objectContaining({
         data: { distanceUnits: 'ml' }
       }));
+      await page.waitForTimeout(2000)
 
       /// ------------
       await page.reload();
@@ -146,7 +147,7 @@ test.describe('API related tests of Settings page', () => {
  
   });
 
-  test('Settings with API Mocking and Modification', { tag: ['@default', '@smoke'] },async({ page }) => {
+  test('Settings with API Mocking and Modification', { tag: ['@api'] },async({ page }) => {
     await test.step('Initial components check', async() => {
       await header.isHeaderVisible();
       await header.selectTab('expenses');
@@ -201,7 +202,7 @@ test.describe('API related tests of Settings page', () => {
 });
 
 
-test('Settings API test without login on UI and with new generaged APIConext', async() => {
+test('Settings API test without login on UI and with new generaged APIConext', { tag: ['@api'] },async() => {
   const apiClient = await apiRequest.newContext();
   const authAPI = new AuthenticationAPI(apiClient);
   const settingsAPI = new SettingsAPI(apiClient);

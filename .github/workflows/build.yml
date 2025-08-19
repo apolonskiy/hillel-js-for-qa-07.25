@@ -1,11 +1,27 @@
 name: CI Testing
 on:
+  push:
+    branches:
+      - main
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
+  lint-pw-lesson-30: 
+    name: 'Lint PW folder lesson 30'
+    runs-on: ubuntu-latest
+    container:
+     image: node:22-slim
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install dependencies
+        working-directory: ./lesson-30
+        run: npm ci
+      - name: Run lint
+        working-directory: ./lesson-30
+        run: npm run lint
   tests-pw-default-image: 
-    if: github.event_name == 'pull_request'
     name: 'PW e2e tests on default image'
+    needs: lint-pw-lesson-30
     runs-on: ubuntu-latest
     container:
      image: mcr.microsoft.com/playwright:v1.54.0
@@ -13,7 +29,7 @@ jobs:
       contents: read
       checks: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Install dependencies
         working-directory: ./lesson-26
         run: npm ci

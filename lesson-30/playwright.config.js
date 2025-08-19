@@ -32,19 +32,21 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   // reporter: [['html', { open: 'on-failure' }], ['list'], ['json', {  outputFile: './test-results/json/test-results.json' }]],
   // reporter: [['blob', { outputFile: `./blob-report/report-${process.env.CI_NODE_INDEX}.zip` }]],
-  // reporter: [
-  //   ['list'],
-  //   ['html', { open: 'on-failure' }],
-  //   [
-  //   // new way
-  //     '@testomatio/reporter/playwright',
-  //     {
-  //       apiKey: 'tstmt_P7ClK20R5k88bZRingcsEmSpXHxjEahXTQ1754068143',
-  //     },
-  //   ],
-  // ],
+  reporter: [
+    ['list'],
+    ['github'],
+    ['junit', { outputFile: 'results.xml' }],
+    ['html', { open: !!process.env.CI ? 'never' : 'on-failure' }],
+    [
+    // new way
+      '@testomatio/reporter/playwright',
+      {
+        apiKey: process.env.TESTOMATIO,
+      },
+    ]
+  ],
   // reporter:[['line'], ['html'], ['allure-playwright']],
-  reporter: [ ['github'], ['html'], ['junit', { outputFile: 'results.xml' }]],
+  // reporter: [ ['github'], ['html'], ['junit', { outputFile: 'results.xml' }]],
   timeout: 120_000,
   expect: { 
     timeout: 5_000,
@@ -64,8 +66,8 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     headless: true,
     // viewport: { width: 1920, height: 1080 },
-    video: 'on', //'on-first-retry',
-    trace: 'on', //'on-first-retry',
+    video: !!process.env.CI ? 'on-first-retry': 'on', //'on-first-retry',
+    trace: !!process.env.CI ? 'on-first-retry': 'on', //'on-first-retry',
     httpCredentials: {
       username: 'guest',
       password: 'welcome2qauto',

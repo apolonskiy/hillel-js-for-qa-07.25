@@ -130,9 +130,6 @@ jobs:
       options: --user 1001
     steps:
       - uses: actions/checkout@v5
-      - name: Install dependencies
-        working-directory: ./lesson-30-cy
-        run: npm ci
       - uses: cypress-io/github-action@v6
         with:
           working-directory: lesson-30-cy
@@ -143,4 +140,5 @@ jobs:
           name: cypress-report-default
           path: |
                 lesson-30-cy/mochawesome-report/
+                lesson-30-cy/videos/
           retention-days: 5

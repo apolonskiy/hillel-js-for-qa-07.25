@@ -49,6 +49,9 @@ jobs:
         run: npm ci
       - name: Run e2e tests
         working-directory: ./lesson-30
+        env:
+          TESTOMATIO: ${{ secrets.TESTOMATIO }}
+          TESTOMATIO_CREATE: ${{ vars.TESTOMATIO_CREATE }}
         run: |
               npm run pw:test:ci:chromium:all-non-setup
       - uses: actions/upload-artifact@v4
@@ -85,6 +88,9 @@ jobs:
         run: npm ci
       - name: Run e2e tests
         working-directory: ./lesson-30
+        env:
+          TESTOMATIO: ${{ vars.TESTOMATIO }}
+          TESTOMATIO_CREATE: ${{ vars.TESTOMATIO_CREATE }}
         run: |
               npm run pw:test:ci:chromium:setup
       - uses: actions/upload-artifact@v4

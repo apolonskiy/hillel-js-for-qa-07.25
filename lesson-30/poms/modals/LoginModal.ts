@@ -1,7 +1,7 @@
 import { BaseModal } from './BaseModal';
 
 export class LoginModal extends BaseModal {
-
+  //@ts-ignore
   selectors = {
     // @ts-ignore
     ...this.selectors,

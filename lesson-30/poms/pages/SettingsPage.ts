@@ -12,7 +12,7 @@ export class SettingsPage extends BasePage {
     settingsButton: (buttonText: 'EUR' | 'GBP' | 'USD' | 'UAH'| 'PLN' | 'km' | 'ml') => this.page.locator('button[class*="settings-control"]', { hasText: buttonText }),
     changeEmailButton: this.page.locator('button', { hasText: 'Change email' }),
     changePasswordButton: this.page.locator('button', { hasText: 'Change password' }),
-    inputValidationError: (errorText) => this.page.locator(`//*[@class="invalid-feedback"]/p[text()='${errorText}']`)
+    inputValidationError: (errorText: string) => this.page.locator(`//*[@class="invalid-feedback"]/p[text()='${errorText}']`)
   };
 
   async isPageVisible(){

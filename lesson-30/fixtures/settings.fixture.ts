@@ -1,8 +1,8 @@
-import { test as base, mergeTests } from '@playwright/test';
+import { test as base, mergeTests, Page } from '@playwright/test';
 import { SettingsPage, Header, NavBar } from '../poms';
 import { loginTest } from './login.fixture';
 
-const cleanupSettings = async(page) => {
+const cleanupSettings = async(page: Page) => {
   await page.request.put('/api/users/settings', { data: {
     currency: 'usd' }
   });

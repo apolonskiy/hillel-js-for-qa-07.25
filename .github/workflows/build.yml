@@ -19,9 +19,23 @@ jobs:
       - name: Run lint
         working-directory: ./lesson-30
         run: npm run lint
+  typecheck-pw-lesson-30: 
+    name: 'Typecheck PW folder lesson 30'
+    needs: lint-pw-lesson-30
+    runs-on: ubuntu-latest
+    container:
+     image: node:22-slim
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install dependencies
+        working-directory: ./lesson-30
+        run: npm ci
+      - name: Run lint
+        working-directory: ./lesson-30
+        run: npm run build
   tests-pw-default-image: 
     name: 'PW e2e tests on default image'
-    needs: lint-pw-lesson-30
+    needs: typecheck-pw-lesson-30
     runs-on: ubuntu-latest
     container:
      image: mcr.microsoft.com/playwright:v1.54.0

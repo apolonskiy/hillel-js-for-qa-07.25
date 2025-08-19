@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "CommonJS",
+    "declaration": true,
+    "rootDir": ".",
+    "outDir": "dist",
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "skipLibCheck": true,
+    "types": ["node"],
+    "declarationDir": "dist",
+    "emitDeclarationOnly": false
+  },
+  "compileOnSave": true,
+  "exclude": ["node_modules", "blob-report", "allure-report", "allure-results", "test-results"]
+}

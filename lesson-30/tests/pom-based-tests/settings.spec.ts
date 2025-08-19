@@ -5,15 +5,9 @@ import { Header, LandingPage, NavBar, SettingsPage } from '../../poms';
 test.describe('POM-based tests of Settings page', () => {
   let landingPage;
   let loginModal;
-  let header;
-  /**
-   * @type {NavBar}
-   */
-  let navBar;
-  /**
-   * @type {SettingsPage}
-   */
-  let settingsPage;
+  let header: Header;
+  let navBar: NavBar;
+  let settingsPage: SettingsPage;
 
   test.beforeEach(async({ page, context, baseURL }) => {
     landingPage = new LandingPage(page, context);
@@ -42,7 +36,7 @@ test.describe('POM-based tests of Settings page', () => {
 
     // --------
     loginModal = await landingPage.clickSignIn();
-    await loginModal.executeLogin(process.env.DEFAULT_USERNAME, process.env.DEFAULT_PASSWORD);
+    await loginModal.executeLogin(process.env.DEFAULT_USERNAME!, process.env.DEFAULT_PASSWORD!);
     await page.request.put('/api/users/settings', { data: {
       currency: 'usd' }
     });
@@ -74,7 +68,7 @@ test.describe('POM-based tests of Settings page', () => {
     await test.step('Initial components check', async() => {
       await header.isHeaderVisible();
       await header.selectTab('expenses');
-      await expect(page.locator('h1', { hasText: 'Fuel expenses' })).toBeVisible();
+      await expect(page.locator('h1', { hasText: 'Fuel expenses'   })).toBeVisible();
       await navBar.selectTab('settings');
       await page.reload();
     });

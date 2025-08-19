@@ -7,17 +7,11 @@ import { SettingsAPI } from '../../api/settings.api';
 test.describe('API related tests of Settings page', () => {
   let landingPage;
   let loginModal;
-  let header;
-  /**
-   * @type {NavBar}
-   */
-  let navBar;
-  /**
-   * @type {SettingsPage}
-   */
-  let settingsPage;
+  let header: Header;
+  let navBar: NavBar;
+  let settingsPage: SettingsPage;
 
-  let settinsApi;
+  let settinsApi: SettingsAPI;
 
   test.beforeEach(async({ page, context, request }) => {
     landingPage = new LandingPage(page, context);
@@ -57,7 +51,7 @@ test.describe('API related tests of Settings page', () => {
     //     }
     //   });
     // });
-    await loginModal.executeLogin(process.env.DEFAULT_USERNAME, process.env.DEFAULT_PASSWORD);
+    await loginModal.executeLogin(process.env.DEFAULT_USERNAME!, process.env.DEFAULT_PASSWORD!);
 
     await page.waitForTimeout(500);
     await settinsApi.putSettings({ currency: 'usd' });

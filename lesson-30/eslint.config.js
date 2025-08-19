@@ -12,7 +12,7 @@ export default defineConfig([
     ...pluginJs.configs.recommended,
     ...playwright.configs['flat/recommended'],
     // ...tseslint.configs.recommended,
-    files: ['**/*.js', '**/*.mjs'],
+    files: ['**/*.ts', '**/*.mjs'],
     languageOptions: {
       globals: globals.node,
       ecmaVersion: 'latest',

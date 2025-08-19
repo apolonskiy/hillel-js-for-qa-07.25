@@ -82,7 +82,7 @@ test.describe('API related tests of Settings page', () => {
     await test.step('Initial components check', async() => {
       await header.isHeaderVisible();
       await header.selectTab('expenses');
-      await expect(page.locator('h3', { hasText: 'Fuel expenses' })).toBeVisible();
+      await expect(page.locator('h1', { hasText: 'Fuel expenses' })).toBeVisible();
       await navBar.selectTab('settings');
       await page.reload();
     });

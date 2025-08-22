@@ -5,7 +5,7 @@ export type TValues<T> = T[keyof T];
 
 export const LoginModalErrorMessagesObj = {
   erroFirst: 'someText'
-}
+};
 
 export type TLoginModalErrorMessagesObj = TValues<typeof LoginModalErrorMessagesObj>;
 
@@ -20,6 +20,7 @@ export class LoginModal extends BaseModal {
     ...this.selectors,
     emailInput: this.page.locator('[id="signinEmail"]'),
     passwordInput: this.page.locator('[id="signinPassword"]'),
+    inputError: (errorText: TLoginModalErrorMessagesObj) => this.page.locator('inpput', { hasText: errorText })
   };
 
   async typeEmail(email: string){

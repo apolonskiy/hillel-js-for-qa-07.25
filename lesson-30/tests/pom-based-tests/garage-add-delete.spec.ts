@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { LandingPage, GaragePage, Header, NavBar } from '../../poms';
+import { LandingPage, GaragePage } from '../../poms';
 
 const BRAND = 'BMW';
 const MODEL = 'X5';
@@ -11,14 +11,10 @@ test.describe.skip('Garage add and delete car', () => {
   let landingPage: LandingPage;
   let loginModal: any;
   let garagePage: GaragePage;
-  let header: Header;
-  let navBar: NavBar;
 
   test.beforeEach(async({ page, context }) => {
     landingPage = new LandingPage(page, context);
     garagePage = new GaragePage(page, context);
-    header = new Header(page, context);
-    navBar = new NavBar(page, context);
 
     await landingPage.open();
     loginModal = await landingPage.clickSignIn();

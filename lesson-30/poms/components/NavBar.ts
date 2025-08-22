@@ -1,4 +1,3 @@
-import { expect } from '@playwright/test';
 import { BaseComponent } from './BaseComponent';
 
 export class NavBar extends BaseComponent {

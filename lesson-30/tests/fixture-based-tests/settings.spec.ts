@@ -3,7 +3,7 @@ import { settingsTest as test } from '../../fixtures';
 
 test.describe('FIXTURE-based tests of Settings page', () => {
 
-  test('Fixture based settings page test', { tag: ['@default', '@smoke'] },async({ page, settingsPage, header, navBar }) => {
+  test('Fixture based settings page test', { tag: ['@fixture'] },async({ page, settingsPage, header, navBar }) => {
     await test.step('Initial components check', async() => {
       await header.isHeaderVisible();
       await header.selectTab('expenses');

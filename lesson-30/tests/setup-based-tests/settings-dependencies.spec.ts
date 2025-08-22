@@ -1,9 +1,9 @@
 import { expect } from '@playwright/test';
 import { settingsTestWithouLogin as test } from '../../fixtures';
 
-test.describe.skip('SETUP-based tests of Settings page', () => {
+test.describe('SETUP-based tests of Settings page', () => {
 
-  test('Setup based settings page test', { tag: ['@default', '@smoke'] },async({ page, settingsPage, header, navBar }) => {
+  test('Setup based settings page test', { tag: ['@setup'] },async({ page, settingsPage, header, navBar }) => {
     await test.step('Initial components check', async() => {
       await header.isHeaderVisible();
       await header.selectTab('expenses');
@@ -35,7 +35,7 @@ test.describe.skip('SETUP-based tests of Settings page', () => {
     });
   });
 
-  test('Setup based settings page test -1', { tag: ['@default', '@smoke'] },async({ page, settingsPage, header, navBar }) => {
+  test('Setup based settings page test -1', { tag: ['@setup'] },async({ page, settingsPage, header, navBar }) => {
     await test.step('Initial components check', async() => {
       await header.isHeaderVisible();
       await header.selectTab('expenses');
@@ -67,7 +67,7 @@ test.describe.skip('SETUP-based tests of Settings page', () => {
     });
   });
 
-  test('Setup based settings page test -2', { tag: ['@default', '@smoke'] },async({ page, settingsPage, header, navBar }) => {
+  test('Setup based settings page test -2', { tag: ['@setup'] },async({ page, settingsPage, header, navBar }) => {
     await test.step('Initial components check', async() => {
       await header.isHeaderVisible();
       await header.selectTab('expenses');

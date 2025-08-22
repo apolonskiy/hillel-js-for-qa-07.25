@@ -28,22 +28,29 @@
     "pw:test:headed:chrome-api": "playwright test tests/api-tests/** --headed --project=chrome",
     "pw:test:headless:chrome-api": "playwright test tests/api-tests/** --project=chromium",
     "playwright:ui": "playwright test --ui",
-    "lint": "eslint --ext .js,.mjs,.cjs",
-    "lint:fix": "npm run lint -- --fix"
+    "pw:test:ci:chromium:all-non-setup": "npm run pw:test:chromium -- --grep-invert @setup",
+    "pw:test:ci:chromium:setup": "npm run pw:test:headless:chromium-setup -- --grep @setup",
+    "lint": "eslint --ext .js,.mjs,.cjs,.ts,.mts",
+    "lint:fix": "npm run lint -- --fix",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@eslint/js": "^9.33.0",
     "@playwright/test": "^1.54.2",
-    "@stylistic/eslint-plugin-js": "^4.4.1",
+    "@stylistic/eslint-plugin": "^5.2.3",
     "@testomatio/reporter": "^2.1.1",
     "@types/node": "^24.0.13",
     "allure-playwright": "^3.3.2",
     "dotenv": "^17.2.1",
-    "eslint": "^9.31.0",
+    "eslint": "^9.33.0",
     "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-playwright": "^2.2.0"
+    "eslint-plugin-playwright": "^2.2.0",
+    "jiti": "^2.5.1",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.40.0"
   },
   "dependencies": {
     "cross-env": "^10.0.0"

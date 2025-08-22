@@ -1,7 +1,7 @@
 import { test as setup } from '@playwright/test';
 import { LandingPage } from '../../poms';
 
-setup('Login with default user', async({ page, context }) => {
+setup('Login with default user',{ tag: ['@setup'] }, async({ page, context }) => {
   const landingPage = new LandingPage(page, context);
   await landingPage.open();
   const loginModal = await landingPage.clickSignIn();

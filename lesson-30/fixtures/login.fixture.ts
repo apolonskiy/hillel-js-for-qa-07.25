@@ -2,7 +2,7 @@ import { test as base } from '@playwright/test';
 import { LandingPage } from '../poms';
 
 
-export const loginTest = base.extend<{login: void}>({
+export const loginTest = base.extend<{ login: void }>({
   login: [async({ page, context }, use) => {
     const landingPage = new LandingPage(page, context);
     await landingPage.open();

@@ -1,16 +1,25 @@
 import { defineConfig, globalIgnores } from 'eslint/config';
 import globals from 'globals';
 import pluginJs from '@eslint/js';
-import stylisticJs from '@stylistic/eslint-plugin-js';
+import stylisticJs from '@stylistic/eslint-plugin';
+import tseslint from 'typescript-eslint';
 import playwright from 'eslint-plugin-playwright';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default defineConfig([
-  globalIgnores(['html*', 'playwright-report', 'test-results', 'node_modules']),
+  // Ignore folders
+  globalIgnores([
+    'html*',
+    'playwright-report',
+    'test-results',
+    'node_modules',
+    'allure-report',
+  ]),
+  pluginJs.configs.recommended,
+  playwright.configs['flat/recommended'],
+  ...tseslint.configs.recommended,
   {
-    ...pluginJs.configs.recommended,
-    ...playwright.configs['flat/recommended'],
-    files: ['**/*.js', '**/*.mjs'],
+    files: ['**/*.ts', '**/*.js', '**/*.mjs'],
     languageOptions: {
       globals: globals.node,
       ecmaVersion: 'latest',
@@ -18,13 +27,11 @@ export default defineConfig([
     },
     plugins: {
       '@stylistic/js': stylisticJs,
-      playwright: playwright.configs['flat/recommended'].plugins.playwright
+      playwright: playwright.configs['flat/recommended'].plugins.playwright,
+      tseslint: tseslint,
     },
     rules: {
       ...playwright.configs['flat/recommended'].rules,
-      'no-unused-vars': 'off',
-      '@stylistic/js/indent': 'off',
-      '@stylistic/js/space-in-parens': ['error', 'never'],
       '@stylistic/js/arrow-spacing': ['error', { before: true, after: true }],
       '@stylistic/js/quotes': ['error', 'single'],
       '@stylistic/js/semi': ['error', 'always'],
@@ -34,8 +41,9 @@ export default defineConfig([
       'no-unused-vars': 0,
       '@stylistic/js/indent': ['error', 2, { 'SwitchCase': 2 }],
       '@stylistic/js/space-in-parens': ['error', 'never'],
-      '@stylistic/js/arrow-spacing': [2, { 'before': true, 'after': true }],
-      'no-undef': 'warn'
+      'no-undef': 'warn',
+      '@typescript-eslint/ban-ts-comment': 'off',
+      '@typescript-eslint/no-explicit-any': 'off'
     },
   },
 ]);

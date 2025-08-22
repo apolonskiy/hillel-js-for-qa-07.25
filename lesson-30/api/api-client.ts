@@ -1,7 +1,7 @@
-import { APIRequestContext } from "@playwright/test";
+import { APIRequestContext } from '@playwright/test';
 
 export class ApiClient {
-  private apiRequest: APIRequestContext
+  private apiRequest: APIRequestContext;
   constructor(apiRequest: APIRequestContext) {
     this.apiRequest = apiRequest;
   };

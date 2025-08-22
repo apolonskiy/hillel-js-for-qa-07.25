@@ -7,17 +7,11 @@ import { SettingsAPI } from '../../api/settings.api';
 test.describe('API related tests of Settings page', () => {
   let landingPage;
   let loginModal;
-  let header;
-  /**
-   * @type {NavBar}
-   */
-  let navBar;
-  /**
-   * @type {SettingsPage}
-   */
-  let settingsPage;
+  let header: Header;
+  let navBar: NavBar;
+  let settingsPage: SettingsPage;
 
-  let settinsApi;
+  let settinsApi: SettingsAPI;
 
   test.beforeEach(async({ page, context, request }) => {
     landingPage = new LandingPage(page, context);
@@ -57,7 +51,7 @@ test.describe('API related tests of Settings page', () => {
     //     }
     //   });
     // });
-    await loginModal.executeLogin(process.env.DEFAULT_USERNAME, process.env.DEFAULT_PASSWORD);
+    await loginModal.executeLogin(process.env.DEFAULT_USERNAME!, process.env.DEFAULT_PASSWORD!);
 
     await page.waitForTimeout(500);
     await settinsApi.putSettings({ currency: 'usd' });
@@ -79,12 +73,12 @@ test.describe('API related tests of Settings page', () => {
   });
 
 
-  test.afterEach(async({ page }) => {
+  test.afterEach(async({ }) => {
     await settinsApi.putSettings({ currency: 'usd' });
     await settinsApi.putSettings({ distanceUnits: 'km' });
   });
 
-  test('Settings with API Interception', { tag: ['@default', '@smoke'] },async({ page }) => {
+  test('Settings with API Interception', { tag: ['@api'] },async({ page }) => {
     await test.step('Initial components check', async() => {
       await header.isHeaderVisible();
       await header.selectTab('expenses');
@@ -127,6 +121,7 @@ test.describe('API related tests of Settings page', () => {
       expect(await responseCb.json()).toEqual(expect.objectContaining({
         data: { distanceUnits: 'ml' }
       }));
+      await page.waitForTimeout(2000);
 
       /// ------------
       await page.reload();
@@ -146,7 +141,7 @@ test.describe('API related tests of Settings page', () => {
  
   });
 
-  test('Settings with API Mocking and Modification', { tag: ['@default', '@smoke'] },async({ page }) => {
+  test('Settings with API Mocking and Modification', { tag: ['@api'] },async({ page }) => {
     await test.step('Initial components check', async() => {
       await header.isHeaderVisible();
       await header.selectTab('expenses');
@@ -201,7 +196,7 @@ test.describe('API related tests of Settings page', () => {
 });
 
 
-test('Settings API test without login on UI and with new generaged APIConext', async() => {
+test('Settings API test without login on UI and with new generaged APIConext', { tag: ['@api'] },async() => {
   const apiClient = await apiRequest.newContext();
   const authAPI = new AuthenticationAPI(apiClient);
   const settingsAPI = new SettingsAPI(apiClient);

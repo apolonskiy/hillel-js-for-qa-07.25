@@ -1,5 +1,18 @@
 import { BaseModal } from './BaseModal';
 
+
+export type TValues<T> = T[keyof T];
+
+export const LoginModalErrorMessagesObj = {
+  erroFirst: 'someText'
+}
+
+export type TLoginModalErrorMessagesObj = TValues<typeof LoginModalErrorMessagesObj>;
+
+export enum LoginModalErrorMessages {
+  erroFirst = 'someText'
+}
+
 export class LoginModal extends BaseModal {
   //@ts-ignore
   selectors = {

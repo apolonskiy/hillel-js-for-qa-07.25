@@ -214,3 +214,25 @@ test('Settings API test without login on UI and with new generaged APIConext', {
   expect(await respWithoutContext.json()).toEqual(expect.objectContaining(
     { status: 'ok', data: { distanceUnits: 'km' } }));
 });
+
+const locales = {
+  en: {
+    'login.dialog.confirmation.button': 'Log in'
+  },
+  de: {
+    'login.dialog.confirmation.button': "ButtunInDE"
+  }
+}
+
+<div data-test='key1'>
+
+currentLocale = 'en'
+
+const allLocators = Object.keys(locales[currentLocale]);
+const locator = locales[currentLocale].key1
+async function getString(dataTestLocator: string) {
+  return page.getByTestId(dataTestLocator);
+}
+for await(const key of allLocators) {
+  await getString(key).toHaveText(locales[currentLocale][key]);
+}
